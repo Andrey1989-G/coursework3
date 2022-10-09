@@ -1,5 +1,6 @@
 from flask import request
 from flask_restx import Namespace, Resource
+from project.dao.base import BaseDAO
 
 from project.container import movie_service
 from project.setup.api.models import movie
@@ -20,7 +21,7 @@ class MoviesView(Resource):
         if filter !=None and filter == 'new':
             return movie_service.get_all(filter=filter, **page_parser.parse_args())
         else:
-            return movie_service.get_all(**page_parser.parse_args())
+            return movie_service.get_all(filter=filter, **page_parser.parse_args())
 
 
 @api.route('/<int:movie_id>/')

@@ -33,9 +33,9 @@ class BaseDAO(Generic[T]):
                 return []
         return stmt.all()
 
-    def get_all_order_by(self, page:int, filter:Optional[str]):
+    def get_all_order_by(self, page: Optional[int] = None, filter=None) -> List[T]:
         stmt = self._db_session.query(self.__model__)
-        if filter == 'new':
+        if filter:
             stmt = stmt.order_by(desc(self.__model__.year))
         if page:
             try:
@@ -43,3 +43,4 @@ class BaseDAO(Generic[T]):
             except NotFound:
                 return []
         return stmt.all()
+
