@@ -25,6 +25,7 @@ class BaseDAO(Generic[T]):
 
     def get_all(self, page: Optional[int] = None) -> List[T]:
         stmt: BaseQuery = self._db_session.query(self.__model__)
+
         if page:
             try:
                 return stmt.paginate(page, self._items_per_page).items
@@ -34,7 +35,7 @@ class BaseDAO(Generic[T]):
 
     def get_all_order_by(self, page:int, filter:Optional[str]):
         stmt = self._db_session.query(self.__model__)
-        if filter:
+        if filter == 'new':
             stmt = stmt.order_by(desc(self.__model__.year))
         if page:
             try:
