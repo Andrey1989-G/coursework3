@@ -30,10 +30,11 @@ class MoviesDAO(BaseDAO[Movie]):
 class UsersDAO(BaseDAO[User]):
     __model__ = User
 
-    def create(self, login, password):
+    def create(self, name, login, password):
         try:
             self._db_session.add(
                 User(
+                    name=name,
                     email=login,
                     password=password
                 )

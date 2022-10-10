@@ -28,6 +28,6 @@ user: Model = api.model('Пользователь', {
     'email': fields.String(required=True, max_length=100, example='edsd@mail.ru'),
     'password': fields.String(required=True, max_length=100, example='1234'),
     'name': fields.String(required=True, max_length=100, example='Vasya'),
-    'surname': fields.String(required=True, max_length=100, example='Ivanov'),
+    'surname': fields.String(required=False, max_length=100, example='Ivanov'),
     'favorite_genre': fields.Nested(genre)
 })
