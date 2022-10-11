@@ -29,7 +29,6 @@ class UserView(Resource):
         print(f"rq_json: {rq_json}")
         print(f"request.headers: {request.headers}")
         token = request.headers.environ.get('HTTP_AUTHORIZATION').replace("Bearer ", "")
-
         email = rq_json.get("email")
         name = rq_json.get("name")
         surname = rq_json.get("surname")
@@ -54,6 +53,7 @@ class UserView(Resource):
     @api.response(404, 'Not Found')
     @auth_required
     def put(self):
+        """обновление пароля"""
         rq_json = request.json
 
         token = request.headers.environ.get('HTTP_AUTHORIZATION').replace("Bearer ", "")

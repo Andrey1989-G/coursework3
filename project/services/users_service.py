@@ -26,8 +26,8 @@ class UsersService:
     def get_user_by_login(self, login):
         return self.dao.get_user_by_login(login)
 
-    def create_user(self, login, password):
-        self.dao.create(login, generate_password_hash(password))
+    def create_user(self, name, login, password):
+        self.dao.create(name, login, generate_password_hash(password))
 
     def partial_update(self, user_d):
         return self.dao.partial_update(user_d)

@@ -25,9 +25,15 @@ movie: Model = api.model('Фильм', {
 
 user: Model = api.model('Пользователь', {
     'id': fields.Integer(),
-    'email': fields.String(required=True, max_length=100, example='edsd@mail.ru'),
-    'password': fields.String(required=True, max_length=100, example='1234'),
-    'name': fields.String(required=True, max_length=100, example='Vasya'),
+    'email': fields.String(required=False, max_length=100, example='edsd@mail.ru'),
+    'password': fields.String(required=False, max_length=100, example='1234'),
+    'name': fields.String(required=False, max_length=100, example='Vasya'),
     'surname': fields.String(required=False, max_length=100, example='Ivanov'),
     'favorite_genre': fields.Nested(genre)
+})
+
+# сериализация для маршала
+token_field: Model = api.model('Токен',{
+    "access token": fields.String(),
+    "refresh token": fields.String(),
 })
